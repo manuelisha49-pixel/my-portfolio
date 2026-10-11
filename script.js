@@ -61,7 +61,7 @@ const PROJECTS = [
 /* ---------- 3. YOUR CONTACT POP-UPS (Email and Facebook cards) ----------
    Put your real Facebook profile link in FACEBOOK_LINK. */
 const EMAIL = "manuelisha49@gmail.com";
-const FACEBOOK_LINK = "#";
+const FACEBOOK_LINK = "https://www.facebook.com/share/1B2gxZSikR";
 const CONTACTS = {
   email: {
     title: "Email me",
