@@ -402,7 +402,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   will-change: transform;
 }
 .cf-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; pointer-events: none; }
-.cf-card.is-active { cursor: default; }
+.cf-hint { text-align: center; margin-top: 0.9rem; }
 
 .cf-arrow {
   position: absolute; top: calc(50% - 22px); z-index: 20; width: 44px; height: 44px; border-radius: 50%;
