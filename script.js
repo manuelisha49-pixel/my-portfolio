@@ -32,9 +32,9 @@ const PROJECTS = [
   {
     image: "proj2.jpg",
     title: "DonLoco Norzagaray",
-    type: "Web design",
-    desc: "A barbershop booking interface where customers log in, book a service, pick a barber and choose a time.",
-    tags: ["UI/UX", "Figma"],
+    type: "System",
+    desc: "A barbershop booking system where customers log in, book a service, pick a barber and choose a time, with bookings stored in a MySQL database.",
+    tags: ["Python", "Tkinter", "MySQL"],
     link: "#",
     button: "View project"
   },
@@ -301,7 +301,7 @@ const MORE_PROJECTS_LINK = "#";
     img.alt = "Screenshot of " + p.title;
     img.draggable = false;
     card.appendChild(img);
-    card.addEventListener("click", () => { if (!dragMoved && i !== active) go(i); });
+    card.addEventListener("click", () => { if (dragMoved) return; go(i === active ? active + 1 : i); });
     stage.appendChild(card);
 
     const dot = document.createElement("button");
@@ -339,6 +339,8 @@ const MORE_PROJECTS_LINK = "#";
       c.dot.setAttribute("aria-current", abs === 0 ? "true" : "false");
     });
 
+    cards.forEach((c, i) => c.card.setAttribute("aria-label", i === active ? "Show next project" : "Show " + PROJECTS[i].title));
+    if (cfCount) cfCount.textContent = active + 1 + " / " + N;
     const p = PROJECTS[active];
     infoTitle.textContent = p.title;
     infoDesc.textContent = p.desc;
@@ -359,6 +361,7 @@ const MORE_PROJECTS_LINK = "#";
     active = ((i % N) + N) % N;
     layoutFlow();
   }
+  const cfCount = $("#cfCount");
   layoutFlow();
 
   if (N < 2) {
@@ -369,6 +372,7 @@ const MORE_PROJECTS_LINK = "#";
   $("#cfPrev").addEventListener("click", () => go(active - 1));
   $("#cfNext").addEventListener("click", () => go(active + 1));
   cf.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && e.target === cf) { e.preventDefault(); go(active + 1); }
     if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
     if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
   });
