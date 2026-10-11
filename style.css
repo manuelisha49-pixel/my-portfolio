@@ -233,7 +233,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* =====================================================
    ABOUT
    ===================================================== */
-.about .display, .education .display { text-align: center; }
+/* About: eyebrow + heading line up with the photo/text block below (same 1050px column) */
+.about > .eyebrow, .about > .display { max-width: 1050px; margin-left: auto; margin-right: auto; text-align: left; }
+.education .display { text-align: center; }
 .about { overflow-x: clip; }
 .about-grid { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; max-width: 1050px; margin: 2rem auto 0; }
 .about-photo {
@@ -535,6 +537,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .scroll-cue { display: none; }
 
   .about-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .about > .eyebrow, .about > .display { text-align: center; }
   .about-meta { justify-content: center; }
   .skill-cards { grid-template-columns: 1fr; }
   .tools { grid-template-columns: repeat(4, 64px); }
