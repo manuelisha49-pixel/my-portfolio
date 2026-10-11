@@ -218,14 +218,9 @@
       <div class="gallery-head reveal">
         <div>
           <p class="eyebrow">Selected work</p>
-          <h2 class="display">Work Gallery</h2>
+          <h2 class="display">Project Gallery</h2>
           <p class="lead">A collection of systems and digital projects I've built.</p>
         </div>
-        <!-- Change the link in script.js (MORE_PROJECTS_LINK) -->
-        <a class="more-btn" id="moreProjects" href="#" target="_blank" rel="noopener">
-          View more projects
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
-        </a>
       </div>
 
       <!-- Cards are generated from the PROJECTS list in script.js -->
@@ -262,12 +257,12 @@
         </div>
 
         <div class="contact-cards">
-          <a class="contact-card reveal" href="mailto:manuelisha49@gmail.com">
+          <a class="contact-card reveal" href="mailto:manuelisha49@gmail.com" data-pop="email">
             <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             <div><span class="c-label">Email</span><span class="c-value u">manuelisha49@gmail.com</span></div>
           </a>
-          <!-- Replace the # below with your Facebook profile link -->
-          <a class="contact-card reveal" href="#" target="_blank" rel="noopener">
+          <!-- Your Facebook link is set in script.js (FACEBOOK_LINK) -->
+          <a class="contact-card reveal" href="#" target="_blank" rel="noopener" data-pop="facebook">
             <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             <div><span class="c-label">Facebook</span><span class="c-value">Krissia Manuel</span></div>
           </a>
@@ -275,7 +270,7 @@
             <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.4 3.7c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-1 2.6V22"/></svg>
             <div><span class="c-label">GitHub</span><span class="c-value">github.com/manuelisha49-pixel</span></div>
           </a>
-          <a class="btn-pill small reveal" href="mailto:manuelisha49@gmail.com?subject=Hello%20Krissia">Send me a message</a>
+          <a class="btn-pill small reveal" href="mailto:manuelisha49@gmail.com?subject=Hello%20Krissia" data-pop="email">Send me a message</a>
         </div>
       </div>
     </section>
@@ -298,6 +293,16 @@
     <img id="lbImg" alt="" />
     <button class="lb-nav next" id="lbNext" aria-label="Next photo">&#8250;</button>
   </div>
+
+
+  <!-- Contact pop-up (filled from CONTACTS in script.js) -->
+  <dialog class="pop" id="contactPop" aria-labelledby="popTitle">
+    <button class="pop-close" id="popClose" type="button" aria-label="Close">&times;</button>
+    <h3 id="popTitle"></h3>
+    <p class="pop-value" id="popValue"></p>
+    <div class="pop-actions" id="popActions"></div>
+    <p class="pop-note" id="popNote" role="status"></p>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
