@@ -58,8 +58,29 @@ const PROJECTS = [
   }
 ];
 
-/* Where the "View more projects" button goes (your GitHub, Behance, Drive, etc.) */
-const MORE_PROJECTS_LINK = "#";
+/* ---------- 3. YOUR CONTACT POP-UPS (Email and Facebook cards) ----------
+   Put your real Facebook profile link in FACEBOOK_LINK. */
+const EMAIL = "manuelisha49@gmail.com";
+const FACEBOOK_LINK = "#";
+const CONTACTS = {
+  email: {
+    title: "Email me",
+    value: EMAIL,
+    actions: [
+      { label: "Copy email address", copy: EMAIL },
+      { label: "Write in Gmail", href: "https://mail.google.com/mail/?view=cm&to=" + EMAIL + "&su=Hello%20Krissia", alt: true },
+      { label: "Open my mail app", href: "mailto:" + EMAIL + "?subject=Hello%20Krissia", alt: true }
+    ]
+  },
+  facebook: {
+    title: "Find me on Facebook",
+    value: "Krissia Manuel",
+    actions: [
+      { label: "Open Facebook profile", href: FACEBOOK_LINK },
+      { label: "Copy profile link", copy: FACEBOOK_LINK, alt: true }
+    ]
+  }
+};
 
 /* =====================================================
    Everything below is the logic. You don't need to edit it.
@@ -221,11 +242,12 @@ const MORE_PROJECTS_LINK = "#";
   );
   $$(".count").forEach((el) => countObs.observe(el));
 
-  /* ---------- Traits: click for the next one (same 3D motion as the projects) ---------- */
+  /* ---------- Traits: a pile of cards, click to send the top one away ---------- */
   const stack = $("#traitStack");
   const traitCount = $("#traitCount");
   const TN = TRAITS.length;
-  let traitActive = 0;
+  let order = TRAITS.map((_, i) => i); // order[0] is the card on top
+  let busy = false;
 
   const traitEls = TRAITS.map((t) => {
     const card = document.createElement("div");
@@ -236,44 +258,73 @@ const MORE_PROJECTS_LINK = "#";
     card.querySelector(".trait-name").textContent = t.name;
     card.querySelector(".trait-desc").textContent = t.desc;
     stack.appendChild(card);
-    return { el: card, prev: null };
+    return card;
   });
 
-  function layoutTraits() {
-    traitEls.forEach((c, i) => {
-      let o = i - traitActive;
-      if (o > TN / 2) o -= TN;
-      if (o < -TN / 2) o += TN;
-      const abs = Math.abs(o);
-      const sign = Math.sign(o);
-      const visible = abs <= 1;
+  // Where each card sits in the pile (the top card also tilts with the mouse)
+  const PILE = [
+    { t: "translate(0px, 0px) rotate(-4deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))", f: "none" },
+    { t: "translate(14px, 16px) rotate(2.5deg) scale(0.97)", f: "brightness(0.82)" },
+    { t: "translate(-8px, 30px) rotate(-3deg) scale(0.94)", f: "brightness(0.65)" }
+  ];
 
-      // A card wrapping around the loop jumps instantly instead of sliding across
-      const jump = c.prev !== null && Math.abs(o - c.prev) > TN / 2;
-      if (jump) c.el.style.transition = "none";
-      c.el.style.transform = `translateX(${sign * 46}%) translateZ(${-abs * 140}px) rotateY(${-sign * 32}deg)`;
-      c.el.style.opacity = visible ? (abs === 0 ? 1 : 0.8) : 0;
-      c.el.style.filter = abs === 0 ? "none" : "blur(1.5px) brightness(0.8)";
-      c.el.style.zIndex = 10 - abs;
-      c.el.classList.toggle("is-active", abs === 0);
-      c.el.setAttribute("aria-hidden", abs === 0 ? "false" : "true");
-      if (jump) { void c.el.offsetWidth; c.el.style.transition = ""; }
-      c.prev = o;
+  function layoutTraits(skip) {
+    order.forEach((cardIndex, pos) => {
+      const el = traitEls[cardIndex];
+      const d = PILE[Math.min(pos, 2)];
+      if (el === skip) el.style.transition = "none"; // the card going to the back appears there instantly
+      el.style.transform = d.t;
+      el.style.filter = d.f;
+      el.style.opacity = pos > 2 ? 0 : 1;
+      el.style.zIndex = 10 - pos;
+      el.classList.toggle("is-active", pos === 0);
+      el.setAttribute("aria-hidden", pos === 0 ? "false" : "true");
+      if (el === skip) { void el.offsetWidth; el.style.transition = ""; }
     });
-    traitCount.textContent = traitActive + 1 + " / " + TN;
-    stack.setAttribute("aria-label", "Current trait: " + TRAITS[traitActive].name + ". Show next trait");
+    traitCount.textContent = order[0] + 1 + " / " + TN;
+    stack.setAttribute("aria-label", "Current trait: " + TRAITS[order[0]].name + ". Show next trait");
   }
   layoutTraits();
 
   function nextTrait() {
-    if (TN < 2) return;
-    traitActive = (traitActive + 1) % TN;
-    layoutTraits();
+    if (busy || TN < 2) return;
+    busy = true;
+    const top = traitEls[order[0]];
+    if (reduceMotion) {
+      order.push(order.shift());
+      layoutTraits();
+      busy = false;
+      return;
+    }
+    // Throw the top card to the side, then tuck it at the back of the pile
+    top.style.transition = "transform 0.55s var(--ease), opacity 0.45s var(--ease)";
+    top.style.transform = "translate(-75%, -30px) rotate(-22deg) rotateY(-35deg)";
+    top.style.opacity = 0;
+    setTimeout(() => {
+      order.push(order.shift());
+      layoutTraits(top);
+      setTimeout(() => (busy = false), 350);
+    }, 480);
   }
   stack.addEventListener("click", nextTrait);
   stack.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nextTrait(); }
   });
+
+  // Tilt the pile towards the mouse
+  if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
+    stack.addEventListener("pointermove", (e) => {
+      const r = stack.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      stack.style.setProperty("--ry", px * 16 + "deg");
+      stack.style.setProperty("--rx", -py * 12 + "deg");
+    });
+    stack.addEventListener("pointerleave", () => {
+      stack.style.removeProperty("--ry");
+      stack.style.removeProperty("--rx");
+    });
+  }
 
   /* ---------- Projects: 3D coverflow gallery ---------- */
   const stage = $("#cfStage");
@@ -284,7 +335,6 @@ const MORE_PROJECTS_LINK = "#";
   const infoTags = $("#cfTags");
   const infoLink = $("#cfLink");
   const dotsWrap = $("#cfDots");
-  $("#moreProjects").href = MORE_PROJECTS_LINK;
 
   const N = PROJECTS.length;
   let active = 0;
@@ -432,6 +482,44 @@ const MORE_PROJECTS_LINK = "#";
     if (e.key === "ArrowLeft") showShot(current - 1, true);
     if (e.key === "ArrowRight") showShot(current + 1, true);
   });
+
+  /* ---------- Contact pop-ups ---------- */
+  const pop = $("#contactPop");
+  const popNote = $("#popNote");
+  function openPop(key) {
+    const c = CONTACTS[key];
+    if (!c || !pop.showModal) return false;
+    $("#popTitle").textContent = c.title;
+    $("#popValue").textContent = c.value;
+    popNote.textContent = "";
+    const box = $("#popActions");
+    box.innerHTML = "";
+    c.actions.forEach((a) => {
+      const el = document.createElement(a.href ? "a" : "button");
+      el.className = "pop-btn" + (a.alt ? " alt" : "");
+      el.textContent = a.label;
+      if (a.href) {
+        el.href = a.href;
+        if (a.href.indexOf("http") === 0) { el.target = "_blank"; el.rel = "noopener"; }
+      } else {
+        el.type = "button";
+        el.addEventListener("click", () => {
+          const done = () => (popNote.textContent = "Copied to clipboard.");
+          const fail = () => (popNote.textContent = "Couldn't copy. Please copy it manually.");
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(a.copy).then(done, fail);
+          else fail();
+        });
+      }
+      box.appendChild(el);
+    });
+    pop.showModal();
+    return true;
+  }
+  $$("[data-pop]").forEach((a) => a.addEventListener("click", (e) => {
+    if (openPop(a.dataset.pop)) e.preventDefault();
+  }));
+  $("#popClose").addEventListener("click", () => pop.close());
+  pop.addEventListener("click", (e) => { if (e.target === pop) pop.close(); });
 
   /* ---------- Misc ---------- */
   $("#year").textContent = new Date().getFullYear();
