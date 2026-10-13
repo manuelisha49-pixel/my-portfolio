@@ -11,9 +11,11 @@
   --ink: #0d0d0d;
   --muted: #444;
   --line: #0d0d0d;
-  --tag-bg: #e8dffa;
-  --tag-ink: #3b2a73;
-  --accent: #6d4aff;
+  --tag-bg: #f1d9df;
+  --tag-ink: #5e0b1e;
+  --heading: #6b1426;      /* burgundy headings */
+  --accent: #8a1c36;       /* burgundy buttons / fills (white text on top) */
+  --accent-ink: #8a1c36;   /* burgundy icons / outlines on the page */
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
 
   --font-display: "Source Serif 4", Georgia, serif;
@@ -32,9 +34,11 @@
   --ink: #f3f3f3;
   --muted: #b5b5b5;
   --line: #f3f3f3;
-  --tag-bg: #3a2f66;
-  --tag-ink: #e4dcff;
-  --accent: #a28bff;
+  --tag-bg: #4a1f2b;
+  --tag-ink: #f6d3db;
+  --heading: #ec8fa3;      /* soft rose so headings stay readable on dark */
+  --accent: #b3243f;
+  --accent-ink: #ec8fa3;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -60,7 +64,7 @@ a { color: inherit; }
 ul { list-style: none; margin: 0; padding: 0; }
 button { font: inherit; color: inherit; cursor: pointer; }
 
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; border-radius: 6px; }
 
 .skip-link {
   position: absolute; left: 12px; top: -60px; z-index: 200;
@@ -366,10 +370,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .skill-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
 .skill-card header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; min-height: 5.4rem; }
 .num { font-size: 2.6rem; line-height: 1; font-weight: 400; }
-.skill-title { font-family: var(--font-display); font-size: 0.74rem; letter-spacing: 0.03em; text-transform: uppercase; text-align: right; line-height: 1.3; max-width: 12ch; overflow-wrap: anywhere; }
+.skill-title { font-family: var(--font-display); font-size: 0.74rem; letter-spacing: 0.03em; text-transform: uppercase; text-align: right; line-height: 1.3; max-width: 17ch; overflow-wrap: break-word; }
 .skill-icon { width: 38px; height: 38px; margin: 0.8rem auto 1.2rem; border-radius: 8px; background: color-mix(in srgb, var(--accent) 16%, transparent); display: grid; place-items: center; transition: transform 0.6s var(--ease); }
 .skill-card:hover .skill-icon { transform: rotate(360deg) scale(1.1); }
-.skill-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.skill-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--accent-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .skill-card p { margin: 0 0 1.4rem; font-size: 1.05rem; line-height: 1.5; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
 .tags li { background: var(--tag-bg); color: var(--tag-ink); font-size: 0.75rem; padding: 5px 10px; border-radius: 4px; transition: transform 0.3s var(--ease); }
@@ -555,3 +559,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* =====================================================
+   BURGUNDY HEADINGS
+   Change --heading at the top of this file to recolor them all.
+   (The big outlined name in the hero stays black / white on purpose.)
+   ===================================================== */
+.display,
+.about-name,
+.edu-card h3,
+.hobby h4,
+.trait-name,
+.cf-info h3,
+.pop h3 { color: var(--heading); transition: color 0.5s var(--ease); }
