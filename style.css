@@ -11,12 +11,12 @@
   --ink: #0d0d0d;
   --muted: #444;
   --line: #0d0d0d;
-  --tag-bg: #e8dffa;
-  --tag-ink: #3b2a73;
+  --tag-bg: #e6e6e6;
+  --tag-ink: #1a1a1a;
   --heading: #0d0d0d;      /* headings: black in light mode */
   --hero-red: #b50e28;     /* the big MANUEL KRISSIA on the home page */
-  --accent: #6d4aff;
-  --accent-ink: #6d4aff;
+  --accent: #4a4a4a;        /* hover fills (white text on top) */
+  --accent-ink: #0d0d0d;    /* icons / outlines */
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
 
   --font-display: "Source Serif 4", Georgia, serif;
@@ -35,12 +35,12 @@
   --ink: #f3f3f3;
   --muted: #b5b5b5;
   --line: #f3f3f3;
-  --tag-bg: #3a2f66;
-  --tag-ink: #e4dcff;
+  --tag-bg: #3a3a3a;
+  --tag-ink: #f0f0f0;
   --heading: #f3f3f3;      /* headings: white in dark mode */
   --hero-red: #ff6b7d;     /* lighter red so the name stays readable on dark */
-  --accent: #a28bff;
-  --accent-ink: #a28bff;
+  --accent: #5a5a5a;
+  --accent-ink: #f3f3f3;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -448,7 +448,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .btn-pill {
   display: inline-block; text-decoration: none; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 500;
-  background: #f6f1fb; color: #0d0d0d; padding: 14px 34px; border-radius: 999px; font-size: 1.1rem;
+  background: #f5f5f5; color: #0d0d0d; padding: 14px 34px; border-radius: 999px; font-size: 1.1rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.4s var(--ease), box-shadow 0.4s, background-color 0.3s, color 0.3s;
 }
