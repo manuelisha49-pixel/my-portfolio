@@ -11,11 +11,11 @@
   --ink: #0d0d0d;
   --muted: #444;
   --line: #0d0d0d;
-  --tag-bg: #f1d9df;
-  --tag-ink: #5e0b1e;
-  --heading: #6b1426;      /* burgundy headings */
-  --accent: #8a1c36;       /* burgundy buttons / fills (white text on top) */
-  --accent-ink: #8a1c36;   /* burgundy icons / outlines on the page */
+  --tag-bg: #f8d7dc;
+  --tag-ink: #7a0a1c;
+  --heading: #b50e28;      /* red headings + big hero name */
+  --accent: #b50e28;       /* red buttons / fills (white text on top) */
+  --accent-ink: #b50e28;   /* red icons / outlines on the page */
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
 
   --font-display: "Source Serif 4", Georgia, serif;
@@ -34,11 +34,11 @@
   --ink: #f3f3f3;
   --muted: #b5b5b5;
   --line: #f3f3f3;
-  --tag-bg: #4a1f2b;
-  --tag-ink: #f6d3db;
-  --heading: #ec8fa3;      /* soft rose so headings stay readable on dark */
-  --accent: #b3243f;
-  --accent-ink: #ec8fa3;
+  --tag-bg: #4d1a22;
+  --tag-ink: #ffd6dc;
+  --heading: #ff6b7d;      /* lighter red so headings stay readable on dark */
+  --accent: #d62839;
+  --accent-ink: #ff6b7d;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -205,7 +205,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .hero-line .ch {
   display: inline-block; color: transparent;
-  -webkit-text-stroke: 1.5px var(--ink);
+  -webkit-text-stroke: 2px var(--heading);
   transform: translateY(110%) rotate(6deg); opacity: 0;
   animation: chIn 0.9s var(--ease) forwards;
   animation-delay: calc(0.5s + var(--i) * 0.055s);
@@ -213,7 +213,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   cursor: default;
 }
 @keyframes chIn { to { transform: none; opacity: 1; } }
-.hero-line .ch:hover { color: var(--ink); transform: translateY(-8px) rotate(-3deg); }
+.hero-line .ch:hover { color: var(--heading); transform: translateY(-8px) rotate(-3deg); }
 .hero-title.parallax .hero-line.l1 { transition: transform 0.2s linear; }
 .hero-title.parallax .hero-line.l2 { transition: transform 0.2s linear; }
 
@@ -561,14 +561,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 /* =====================================================
-   BURGUNDY HEADINGS
-   Change --heading at the top of this file to recolor them all.
-   (The big outlined name in the hero stays black / white on purpose.)
+   RED HEADINGS
+   Change --heading at the top of this file to recolor them all
+   (including the big outlined name on the home page).
+   "KRISSIA L. MANUEL" in About is NOT in this list on purpose:
+   it stays black in light mode and white in dark mode.
    ===================================================== */
 .display,
-.about-name,
 .edu-card h3,
 .hobby h4,
 .trait-name,
 .cf-info h3,
 .pop h3 { color: var(--heading); transition: color 0.5s var(--ease); }
+.about-name { color: var(--ink); } /* black (light) / white (dark) */
