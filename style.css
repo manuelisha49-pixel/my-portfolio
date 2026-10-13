@@ -11,11 +11,12 @@
   --ink: #0d0d0d;
   --muted: #444;
   --line: #0d0d0d;
-  --tag-bg: #f8d7dc;
-  --tag-ink: #7a0a1c;
-  --heading: #b50e28;      /* red headings + big hero name */
-  --accent: #b50e28;       /* red buttons / fills (white text on top) */
-  --accent-ink: #b50e28;   /* red icons / outlines on the page */
+  --tag-bg: #e8dffa;
+  --tag-ink: #3b2a73;
+  --heading: #0d0d0d;      /* headings: black in light mode */
+  --hero-red: #b50e28;     /* the big MANUEL KRISSIA on the home page */
+  --accent: #6d4aff;
+  --accent-ink: #6d4aff;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
 
   --font-display: "Source Serif 4", Georgia, serif;
@@ -34,11 +35,12 @@
   --ink: #f3f3f3;
   --muted: #b5b5b5;
   --line: #f3f3f3;
-  --tag-bg: #4d1a22;
-  --tag-ink: #ffd6dc;
-  --heading: #ff6b7d;      /* lighter red so headings stay readable on dark */
-  --accent: #d62839;
-  --accent-ink: #ff6b7d;
+  --tag-bg: #3a2f66;
+  --tag-ink: #e4dcff;
+  --heading: #f3f3f3;      /* headings: white in dark mode */
+  --hero-red: #ff6b7d;     /* lighter red so the name stays readable on dark */
+  --accent: #a28bff;
+  --accent-ink: #a28bff;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -205,7 +207,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .hero-line .ch {
   display: inline-block; color: transparent;
-  -webkit-text-stroke: 2px var(--heading);
+  -webkit-text-stroke: 2px var(--hero-red);
   transform: translateY(110%) rotate(6deg); opacity: 0;
   animation: chIn 0.9s var(--ease) forwards;
   animation-delay: calc(0.5s + var(--i) * 0.055s);
@@ -213,7 +215,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   cursor: default;
 }
 @keyframes chIn { to { transform: none; opacity: 1; } }
-.hero-line .ch:hover { color: var(--heading); transform: translateY(-8px) rotate(-3deg); }
+.hero-line .ch:hover { color: var(--hero-red); transform: translateY(-8px) rotate(-3deg); }
 .hero-title.parallax .hero-line.l1 { transition: transform 0.2s linear; }
 .hero-title.parallax .hero-line.l2 { transition: transform 0.2s linear; }
 
@@ -561,11 +563,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 /* =====================================================
-   RED HEADINGS
-   Change --heading at the top of this file to recolor them all
-   (including the big outlined name on the home page).
-   "KRISSIA L. MANUEL" in About is NOT in this list on purpose:
-   it stays black in light mode and white in dark mode.
+   HEADING COLOR
+   Headings are black (light mode) and white (dark mode).
+   Change --heading at the top of this file to recolor them all.
+   The big MANUEL KRISSIA on the home page uses --hero-red instead.
    ===================================================== */
 .display,
 .edu-card h3,
