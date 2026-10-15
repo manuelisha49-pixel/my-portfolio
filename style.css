@@ -14,7 +14,7 @@
   --tag-bg: #e6e6e6;
   --tag-ink: #1a1a1a;
   --heading: #0d0d0d;      /* headings: black in light mode */
-  --hero-color: #a67800;   /* big MANUEL KRISSIA on the home page: golden yellow (bright yellow vanishes on light grey) */
+  --hero-color: #0a1f5c;   /* big MANUEL KRISSIA on the home page: navy blue */
   --accent: #4a4a4a;        /* hover fills (white text on top) */
   --accent-ink: #0d0d0d;    /* icons / outlines */
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
@@ -38,7 +38,7 @@
   --tag-bg: #3a3a3a;
   --tag-ink: #f0f0f0;
   --heading: #f3f3f3;      /* headings: white in dark mode */
-  --hero-color: #ffd60a;   /* bright yellow on the dark page */
+  --hero-color: #6f8dff;   /* lighter blue on the dark page (navy would vanish) */
   --accent: #5a5a5a;
   --accent-ink: #f3f3f3;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
