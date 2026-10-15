@@ -380,14 +380,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
 .tags li { background: var(--tag-bg); color: var(--tag-ink); font-size: 0.75rem; padding: 5px 10px; border-radius: 4px; transition: transform 0.3s var(--ease); }
 .tags li:hover { transform: translateY(-3px) scale(1.05); }
+.skill-card .tags li { background: #1f3a68; color: #ffffff; }
 
 /* =====================================================
    PROJECT GALLERY (3D coverflow)
    ===================================================== */
 .projects { overflow: hidden; }
 .gallery-head {
-  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;
-  gap: 1rem 2rem; max-width: 1180px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 1rem; max-width: 1180px; margin: 0 auto;
 }
 .projects .display { text-align: left; }
 .projects .lead { text-align: left; margin: 0; }
