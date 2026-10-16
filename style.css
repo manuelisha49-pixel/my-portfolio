@@ -310,8 +310,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* =====================================================
    ACHIEVEMENTS (collage + lightbox)
    ===================================================== */
-.achievements .display { margin-left: clamp(0rem, 4vw, 4rem); }
-.achievements .lead { margin-left: clamp(0rem, 4vw, 4rem); }
+/* Eyebrow, heading and lead share the same 1050px column as the collage */
+.achievements > .eyebrow, .achievements > .display { max-width: 1050px; margin-left: auto; margin-right: auto; }
+.achievements > .lead { margin-left: max(0px, calc((100% - 1050px) / 2)); }
 
 .collage { columns: 4 200px; column-gap: 1rem; max-width: 1050px; margin: 0 auto; }
 .shot {
@@ -576,3 +577,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .cf-info h3,
 .pop h3 { color: var(--heading); transition: color 0.5s var(--ease); }
 .about-name { color: var(--ink); } /* black (light) / white (dark) */
+
+/* =====================================================
+   EYEBROW ALIGNMENT
+   Each small label sits in the same column as the heading under it,
+   so its left edge lines up with the heading's left edge.
+   ===================================================== */
+.education > .eyebrow { max-width: 960px; margin-left: auto; margin-right: auto; }
+.skills > .eyebrow,
+.contact > .eyebrow { max-width: 1100px; margin-left: auto; margin-right: auto; }
