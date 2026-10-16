@@ -21,7 +21,7 @@ const TRAITS = [
    button : the text on the button                          */
 const PROJECTS = [
   {
-    image: "proj1.jpg",
+    image: "manuel-proj1.jpg",
     title: "Library Management System",
     type: "System",
     desc: "A desktop system for searching books by genre, borrowing, reserving and returning them, and keeping a history of every transaction.",
@@ -30,7 +30,7 @@ const PROJECTS = [
     button: "View project"
   },
   {
-    image: "proj2.jpg",
+    image: "manuel-proj2.jpg",
     title: "DonLoco Norzagaray",
     type: "System",
     desc: "A barbershop booking system where customers log in, book a service, pick a barber and choose a time, with bookings stored in a MySQL database.",
@@ -39,7 +39,7 @@ const PROJECTS = [
     button: "View project"
   },
   {
-    image: "proj3.jpg",
+    image: "manuel-proj3.jpg",
     title: "Student Portal Storyboard",
     type: "UI/UX",
     desc: "A storyboard of the full student portal flow: login, dashboard, student profile, grades, schedule and certificate of registration.",
@@ -48,7 +48,7 @@ const PROJECTS = [
     button: "View project"
   },
   {
-    image: "proj4.jpg",
+    image: "manuel-proj4.jpg",
     title: "Student Management",
     type: "UI design",
     desc: "A clean sign-in screen for a student management system, designed to be simple and easy to use.",
